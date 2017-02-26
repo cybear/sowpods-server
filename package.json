@@ -1,0 +1,15 @@
+{
+  "name": "sowpods-server",
+  "version": "1.0.0",
+  "description": "A dictionary server using SOWPODS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Björn Söderqvist",
+  "license": "ISC",
+  "devDependencies": {
+    "sowpods": "^1.1.0",
+    "sowpods-trie": "^1.0.0"
+  }
+}
