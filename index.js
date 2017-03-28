@@ -1,21 +1,10 @@
-const sowpodsTrie = require('sowpods-trie');
 const http = require('http');
 const server = http.createServer();
+const returnJSON = require('./lib/returnjson');
+const returnInvalidRequest = require('./lib/returninvalid');
+const exists = require('./lib/exists');
+const SERVER_PORT = 3000;
 
-/* Different types of server responses */
-function returnJSON(res, data) {
-  res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.end(JSON.stringify(data));
-}
-
-function returnInvalidRequest(res, message) {
-  res.writeHead(422);
-  res.end(message);
-}
-/* End of server responses */
 
 // Only get the relevant query from the URL
 function getQuery(url) {
@@ -24,29 +13,6 @@ function getQuery(url) {
   return str;
 }
 
-// query word or words in our trie data structure
-function validateQuery(query) {
-  // Are we querying for one word?
-  if (/^[A-Z]{2,15}$/.test(query)) {
-    return {
-      word: query,
-      exists: sowpodsTrie.exists(query)
-    };
-  } else if (/^[A-Z,]{2,15}$/.test(query)) {
-    const words = query.split(',');
-    return words.map(w => {
-      return {
-        word: w,
-        exists: sowpodsTrie.exists(w)
-      }
-    });
-  }
-  return {
-    word: query,
-    exists: false,
-    error: 'The query is too short, too long or has illegal characters.'
-  };
-}
 
 server.on('request', function(req, res) {
   // Don't allow other methods than GET:
@@ -59,8 +25,8 @@ server.on('request', function(req, res) {
   }
 
   const query = getQuery(req.url).toUpperCase();
-  const data = validateQuery(query);
+  const data = exists(query);
   console.log('Query:', query);
   return returnJSON(res, data);
 });
-server.listen(3000);
+server.listen(SERVER_PORT, () => console.log('Server listening at ', SERVER_PORT));
