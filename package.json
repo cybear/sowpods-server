@@ -9,6 +9,7 @@
   "author": "Björn Söderqvist",
   "license": "ISC",
   "devDependencies": {
+    "router": "github:mafintosh/router",
     "sowpods": "^1.1.0",
     "sowpods-trie": "^1.0.0"
   }
