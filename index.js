@@ -4,6 +4,8 @@ const route = require('router')();
 const returnJSON = require('./lib/returnjson');
 const returnInvalidRequest = require('./lib/returninvalid');
 const exists = require('./lib/exists');
+const {filterLength} = require('./lib/filter');
+
 const SERVER_PORT = 3000;
 
 
@@ -12,6 +14,13 @@ route.get('/api/find/*', function(req, res) {
   const query = req.params.wildcard.toUpperCase();
   const data = exists(query);
   console.log('API Find: ', query);
+  returnJSON(res, data);
+});
+
+// Filter the dictionary
+route.get('/api/filter/length/{from}-{to}', function(req, res) {
+  const {from, to} = req.params; // todo sanitize input
+  const data = filterLength(from, to);
   returnJSON(res, data);
 });
 
