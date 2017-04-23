@@ -4,7 +4,7 @@ const route = require('router')();
 const returnJSON = require('./lib/returnjson');
 const returnInvalidRequest = require('./lib/returninvalid');
 const exists = require('./lib/exists');
-const {filterLength, filterOnlyLetters} = require('./lib/filter');
+const {filterLength, filterOnlyLetters, filterPalindromes} = require('./lib/filter');
 
 const SERVER_PORT = 3000;
 
@@ -41,5 +41,12 @@ route.get('/api/filter/letters-only/*', function(req, res) {
   const data = filterOnlyLetters(query);
   returnJSON(res, data);
 });
+
+route.get('/api/filter/palindrome', function(req, res) {
+  const data = filterPalindromes();
+  returnJSON(res, data);
+});
+
+
 server.on('request', route);
 server.listen(SERVER_PORT, () => console.log('Server listening at ', SERVER_PORT));
