@@ -51,6 +51,13 @@ route.get('/api/filter/palindrome', function(req, res) {
 // anagram
 route.get('/api/anagram/{word}', function(req, res) {
   const word = req.params.word.toUpperCase();
+  const valid = /^[A-Z]{2,15}$/.test(word);
+  if(!valid) {
+    return returnJSON(res, {error: 'invalid query'});
+  }
+  if (!exists(word) {
+    return returnJSON(res, {error: 'word does not exist'});
+  }
   const query = word.split('').sort().join('');
   const words = anagram[query];
   const data = {
