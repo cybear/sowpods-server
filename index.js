@@ -3,6 +3,7 @@ const server = http.createServer();
 const route = require('router')();
 const returnJSON = require('./lib/returnjson');
 const returnInvalidRequest = require('./lib/returninvalid');
+const anagram = require('./lib/anagram');
 const exists = require('./lib/exists');
 const {filterLength, filterOnlyLetters, filterPalindromes} = require('./lib/filter');
 
@@ -47,6 +48,18 @@ route.get('/api/filter/palindrome', function(req, res) {
   returnJSON(res, data);
 });
 
+// anagram
+route.get('/api/anagram/{word}', function(req, res) {
+  const word = req.params.word.toUpperCase();
+  const query = word.split('').sort().join('');
+  const words = anagram[query];
+  const data = {
+    word,
+    exists: !!words,
+    words,
+  };
+  returnJSON(res, data);
+});
 
 server.on('request', route);
 server.listen(SERVER_PORT, () => console.log('Server listening at ', SERVER_PORT));
