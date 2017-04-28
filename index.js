@@ -3,10 +3,11 @@ const server = http.createServer();
 const route = require('router')();
 const returnJSON = require('./lib/returnjson');
 const returnInvalidRequest = require('./lib/returninvalid');
-const anagram = require('./lib/anagram');
 const exists = require('./lib/exists');
-const {filterLength, filterOnlyLetters, filterPalindromes} = require('./lib/filter');
-
+const sowpods = require('sowpods');
+const Filters = require('./lib/filter');
+const anagram = require('./lib/anagram')(sowpods);
+const filters = new Filters(sowpods);
 const SERVER_PORT = 3000;
 
 
@@ -29,7 +30,7 @@ route.get('/api/filter/length/{from}-{to}', function(req, res) {
   if(!iFrom || !iTo || iFrom > iTo || iTo > 15 || iFrom < 2) {
     return returnJSON(res, {error: 'invalid query'});
   }
-  const data = filterLength(from, to);
+  const data = filters.length(from, to);
   returnJSON(res, data);
 });
 
@@ -39,12 +40,12 @@ route.get('/api/filter/letters-only/*', function(req, res) {
   if(!valid) {
     return returnJSON(res, {error: 'invalid query'});
   }
-  const data = filterOnlyLetters(query);
+  const data = filters.onlyLetters(query);
   returnJSON(res, data);
 });
 
 route.get('/api/filter/palindrome', function(req, res) {
-  const data = filterPalindromes();
+  const data = filters.palindromes();
   returnJSON(res, data);
 });
 
@@ -55,7 +56,7 @@ route.get('/api/anagram/{word}', function(req, res) {
   if(!valid) {
     return returnJSON(res, {error: 'invalid query'});
   }
-  if (!exists(word) {
+  if (!exists(word)) {
     return returnJSON(res, {error: 'word does not exist'});
   }
   const query = word.split('').sort().join('');
