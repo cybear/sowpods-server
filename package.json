@@ -4,14 +4,18 @@
   "description": "A dictionary server using SOWPODS",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*"
+    "test": "tape test/*",
+    "perf": "node perf/*"
   },
   "author": "Björn Söderqvist",
   "license": "ISC",
   "devDependencies": {
+    "benchmark": "^2.1.4",
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
     "router": "github:mafintosh/router",
     "sowpods": "^1.1.0",
-    "sowpods-trie": "^1.0.0",
-    "tape": "^4.6.3"
+    "sowpods-trie": "^1.0.0"
   }
 }
