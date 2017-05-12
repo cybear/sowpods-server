@@ -5,7 +5,7 @@ const dictionary = [
 ];
 
 const {test} = require('tape');
-const anagramFn = require('../lib/anagram');
+const anagramFn = require('../src/data-structures/anagram');
 
 test('Adds the correct amount of anagrams', assert => {
   const anagrams = anagramFn(dictionary);

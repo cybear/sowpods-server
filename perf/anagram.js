@@ -1,6 +1,6 @@
 const Benchmark = require('benchmark');
 const sowpods = require('sowpods');
-const anagram = require('../lib/anagram')(sowpods);
+const anagram = require('../src/data-structures/anagram')(sowpods);
 
 const suite = new Benchmark.Suite;
 

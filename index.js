@@ -1,12 +1,12 @@
 const http = require('http');
 const server = http.createServer();
 const route = require('router')();
-const returnJSON = require('./lib/returnjson');
-const returnInvalidRequest = require('./lib/returninvalid');
-const exists = require('./lib/exists');
+const returnJSON = require('./src/http/returnjson');
+const returnInvalidRequest = require('./src/http/returninvalid');
+const exists = require('./src/data-structures/exists');
 const sowpods = require('sowpods');
-const Filters = require('./lib/filter');
-const anagram = require('./lib/anagram')(sowpods);
+const Filters = require('./src/filters');
+const anagram = require('./src/data-structures/anagram')(sowpods);
 const filters = new Filters(sowpods);
 const SERVER_PORT = 3000;
 

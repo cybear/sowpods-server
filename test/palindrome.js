@@ -1,5 +1,5 @@
 const {test} = require('tape');
-const Filters = require('../lib/filter');
+const Filters = require('../src/filters');
 
 test('Recognizes a palindrome', assert => {
   const dict = ['ABBA'];
