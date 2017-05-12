@@ -44,6 +44,20 @@ route.get('/api/filter/letters-only/*', function(req, res) {
   returnJSON(res, data);
 });
 
+route.get('/api/filter/hex-colors/', function(req, res) {
+  const length3or6 = w => w.length === 3 || w.length === 6;
+  const data = filters.onlyLetters('ABCDEF').filter(length3or6);
+  returnJSON(res, data);
+});
+route.get('/api/filter/melodies/', function(req, res) {
+  const data = filters.onlyLetters('ABCDEFG');
+  returnJSON(res, data);
+});
+route.get('/api/filter/melodies-de/', function(req, res) {
+  const data = filters.onlyLetters('ABCDEFGH');
+  returnJSON(res, data);
+});
+
 route.get('/api/filter/palindrome', function(req, res) {
   const data = filters.palindromes();
   returnJSON(res, data);
