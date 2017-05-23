@@ -49,26 +49,22 @@ route.get('/api/filter/hex-colors/', function(req, res) {
   const data = filters.onlyLetters('ABCDEF').filter(length3or6);
   returnJSON(res, data);
 });
-route.get('/api/filter/melodies/', function(req, res) {
-  const data = filters.onlyLetters('ABCDEFG');
-  returnJSON(res, data);
-});
-route.get('/api/filter/melodies-de/', function(req, res) {
-  const data = filters.onlyLetters('ABCDEFGH');
-  returnJSON(res, data);
-});
-route.get('/api/filter/palindrome', function(req, res) {
-  const data = filters.palindromes();
-  returnJSON(res, data);
-});
-route.get('/api/filter/vowels', function(req, res) {
-  const data = filters.onlyLetters('AEIOUY');
-  returnJSON(res, data);
-});
-route.get('/api/filter/consonants', function(req, res) {
-  const data = filters.onlyLetters('BCDFGHJKLMNPQRSTVWXZ');
-  returnJSON(res, data);
-});
+
+route.get('/api/filter/melodies/', (req, res) => returnJSON(res,
+  filters.onlyLetters('ABCDEFG')
+));
+route.get('/api/filter/melodies-de/', (req, res) => returnJSON(res,
+  filters.onlyLetters('ABCDEFGH')
+));
+route.get('/api/filter/palindrome', (req, res) => returnJSON(res,
+  filters.palindromes()
+));
+route.get('/api/filter/vowels', (req, res) => returnJSON(res,
+  filters.onlyLetters('AEIOUY')
+));
+route.get('/api/filter/consonants', (req, res) => returnJSON(res,
+  filters.onlyLetters('BCDFGHJKLMNPQRSTVWXZ')
+));
 
 
 // anagram
