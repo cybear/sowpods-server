@@ -57,11 +57,19 @@ route.get('/api/filter/melodies-de/', function(req, res) {
   const data = filters.onlyLetters('ABCDEFGH');
   returnJSON(res, data);
 });
-
 route.get('/api/filter/palindrome', function(req, res) {
   const data = filters.palindromes();
   returnJSON(res, data);
 });
+route.get('/api/filter/vowels', function(req, res) {
+  const data = filters.onlyLetters('AEIOUY');
+  returnJSON(res, data);
+});
+route.get('/api/filter/consonants', function(req, res) {
+  const data = filters.onlyLetters('BCDFGHJKLMNPQRSTVWXZ');
+  returnJSON(res, data);
+});
+
 
 // anagram
 route.get('/api/anagram/{word}', function(req, res) {
