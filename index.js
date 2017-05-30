@@ -44,16 +44,16 @@ route.get('/api/filter/letters-only/*', function(req, res) {
   returnJSON(res, data);
 });
 
-route.get('/api/filter/hex-colors/', function(req, res) {
+route.get('/api/filter/hex-colors', function(req, res) {
   const length3or6 = w => w.length === 3 || w.length === 6;
   const data = filters.onlyLetters('ABCDEF').filter(length3or6);
   returnJSON(res, data);
 });
 
-route.get('/api/filter/melodies/', (req, res) => returnJSON(res,
+route.get('/api/filter/melodies', (req, res) => returnJSON(res,
   filters.onlyLetters('ABCDEFG')
 ));
-route.get('/api/filter/melodies-de/', (req, res) => returnJSON(res,
+route.get('/api/filter/melodies-de', (req, res) => returnJSON(res,
   filters.onlyLetters('ABCDEFGH')
 ));
 route.get('/api/filter/palindrome', (req, res) => returnJSON(res,
