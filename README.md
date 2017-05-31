@@ -19,7 +19,7 @@ I would like to whip up small word game prototypes at game jams. Maybe other peo
 
 `/api/filter/melodies` - words that are also melodies (CDEFGAB).
 
-`/api/filter/melodies` - words that are also melodies in German / Scandinavian notation (CDEFGABH).
+`/api/filter/melodies-de` - words that are also melodies in German / Scandinavian notation (CDEFGABH).
 
 `/api/filter/palindrome` - words that are palindromes.
 
