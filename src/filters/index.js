@@ -22,4 +22,20 @@ module.exports = class Filters {
     const re = new RegExp(`^[${letters}]*$`);
     return this.dictionary.filter(w => re.test(w));
   }
+  prefix (str) {
+    const re = new RegExp(`^${str}`);
+    return this.dictionary.filter(w => re.test(w));
+  }
+  suffix (str) {
+    const re = new RegExp(`${str}$`);
+    return this.dictionary.filter(w => re.test(w));
+  }
+  interfix (str) {
+    const re = new RegExp(`${str}`);
+    return this.dictionary.filter(w => re.test(w));
+  }
+  prefixAndSuffix(prefix, suffix) {
+    const re = new RegExp(`^${prefix}.*${suffix}$`);
+    return this.dictionary.filter(w => re.test(w));
+  }
 }
