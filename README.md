@@ -17,6 +17,14 @@ I would like to whip up small word game prototypes at game jams. Maybe other peo
 
 [/api/filter/hex-colors](https://sowpods.net/api/filter/hex-colors) - words that are also hex colors.
 
+[/api/filter/prefix/{prefix}](https://sowpods.net/api/filter/prefix/inter) - words beginning with this prefix.
+
+[/api/filter/suffix/{suffix}](https://sowpods.net/api/filter/suffix/ation) - words ending with this suffix.
+
+[/api/filter/prefix-and-suffix/{prefix},{suffix}](https://sowpods.net/api/filter/prefix-and-suffix/inter,ation) - words with this prefix and suffix.
+
+[/api/filter/interfix/{interfix}](https://sowpods.net/api/filter/interfix/iza) - words containing this interfix.
+
 [/api/filter/melodies](https://sowpods.net/api/filter/melodies) - words that are also melodies (CDEFGAB).
 
 [/api/filter/melodies-de](https://sowpods.net/api/filter/melodies-de) - words that are also melodies in German / Scandinavian notation (CDEFGABH).

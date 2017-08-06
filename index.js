@@ -44,6 +44,47 @@ route.get('/api/filter/letters-only/*', function(req, res) {
   returnJSON(res, data);
 });
 
+route.get('/api/filter/prefix/*', function(req, res) {
+  const query = req.params.wildcard.toUpperCase();
+  const valid = /^[A-Z]{1,14}$/.test(query);
+  if(!valid) {
+    return returnJSON(res, {error: 'invalid query'});
+  }
+  const data = filters.prefix(query);
+  returnJSON(res, data);
+});
+
+route.get('/api/filter/suffix/*', function(req, res) {
+  const query = req.params.wildcard.toUpperCase();
+  const valid = /^[A-Z]{1,14}$/.test(query);
+  if(!valid) {
+    return returnJSON(res, {error: 'invalid query'});
+  }
+  const data = filters.suffix(query);
+  returnJSON(res, data);
+});
+
+route.get('/api/filter/interfix/*', function(req, res) {
+  const query = req.params.wildcard.toUpperCase();
+  const valid = /^[A-Z]{1,15}$/.test(query);
+  if(!valid) {
+    return returnJSON(res, {error: 'invalid query'});
+  }
+  const data = filters.interfix(query);
+  returnJSON(res, data);
+});
+
+route.get('/api/filter/prefix-and-suffix/{prefix},{suffix}', function(req, res) {
+  const prefix = req.params.prefix.toUpperCase();
+  const suffix = req.params.suffix.toUpperCase();
+  const valid = /^[A-Z]{1,14}$/.test(prefix) && /^[A-Z]{1,14}$/.test(suffix);
+  if(!valid) {
+    return returnJSON(res, {error: 'invalid query'});
+  }
+  const data = filters.prefixAndSuffix(prefix, suffix);
+  returnJSON(res, data);
+});
+
 route.get('/api/filter/hex-colors', function(req, res) {
   const length3or6 = w => w.length === 3 || w.length === 6;
   const data = filters.onlyLetters('ABCDEF').filter(length3or6);
